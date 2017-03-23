@@ -27,7 +27,7 @@ public class QueryChecker {
 
     public void setData(String param1, String param2, String param3, String param4) {
        
-        String query = " insert into students (username, password, dateOfBirth, email)"
+        String query = " insert into student (username, password, dateOfBirth, email)"
                 + " values (?, ?, ?, ?)";
         try {
             conn = SimpleDataSource.getConnection();
