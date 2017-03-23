@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" type="text/css" href="loginStyle.css"/>
+        <link rel="stylesheet" type="text/css" href="style.css"/> 
+        <script src="newjavascript.js" type="text/javascript"></script>
+
+    </head>
+    <body>
+
+        <ul>
+            <li><a href="index.xhtml">Home</a></li>
+            <li><a href="StudentLogin.xhtml">Student Login</a></li>
+            <li><a href="InstructorLogin.xhtml">Instructor Login</a></li>
+            <li><a href="AdminLogin.xhtml">Admin Login</a></li>
+        </ul>
+        <div class="login-page">
+            <div class="form">
+                <h3>Create Account</h3>
+                <form action="CreateAccountServlet" method="get">
+                    <input placeholder="username" name="username"/>
+                    <input placeholder="Date of birth (DD/MM/YYYY)" name="dob"/>
+                    <input type="password" placeholder="Password" name="password"/>
+                    <input placeholder="Email Address" name="email"/>
+                    <button name ="action" value="send" type="onlclick">Create</button>
+                </form>
+            </div>
+        </div>
+
+    </body>
+</html>
