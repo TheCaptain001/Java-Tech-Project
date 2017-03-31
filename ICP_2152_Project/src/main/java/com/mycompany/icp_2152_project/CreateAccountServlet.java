@@ -7,6 +7,9 @@ package com.mycompany.icp_2152_project;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,8 +22,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "CreateAccountServlet", urlPatterns = {"/CreateAccountServlet"})
 public class CreateAccountServlet extends HttpServlet {
-
-    QueryChecker check = new QueryChecker();
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -46,7 +48,7 @@ public class CreateAccountServlet extends HttpServlet {
             out.println("</html>");
         }
     }
-    //HIYA
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -68,8 +70,19 @@ public class CreateAccountServlet extends HttpServlet {
         String dob = request.getParameter("dob");
         String email = request.getParameter("email");
         pw.print(dob+ name+ pass+ email);
+        
+        QueryChecker check;
+        try {
+            check = new QueryChecker();
+                try {
+                    check.setData(name, pass, dob, email);
+                } catch (SQLException ex) {
+                    Logger.getLogger(CreateAccountServlet.class.getName()).log(Level.SEVERE, null, ex);
+                }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(CreateAccountServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
-        check.setData(name, pass, dob, email);
     }
 
     /**
