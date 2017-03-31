@@ -122,8 +122,8 @@
             </dependencies>
             <properties>
                 <jdbc.url>jdbc:mysql://mysql.cs.bangor.ac.uk/eeu63e</jdbc.url>
-                <jdbc.username>eeu63e</jdbc.username>
-                <jdbc.password>Project1</jdbc.password>
+                <jdbc.username></jdbc.username>
+                <jdbc.password></jdbc.password>
                 <jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>
             </properties>
         </profile>
