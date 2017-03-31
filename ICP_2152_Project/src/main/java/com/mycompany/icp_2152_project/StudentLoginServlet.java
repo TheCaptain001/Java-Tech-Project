@@ -7,9 +7,6 @@ package com.mycompany.icp_2152_project;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,10 +22,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "StudentLoginServlet", urlPatterns = {"/StudentLoginServlet"})
 public class StudentLoginServlet extends HttpServlet {
-
-    Connection conn;
-    //Use this to run sql statments
-    QueryChecker check = new QueryChecker();
+    
+    //connection conn;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -47,10 +42,10 @@ public class StudentLoginServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet studentLogin</title>");
+            out.println("<title>Servlet StudentLoginServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet studentLogin at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet StudentLoginServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -82,14 +77,25 @@ public class StudentLoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        
+        
         response.setContentType("text/html");
         PrintWriter pw = response.getWriter();
         String name = request.getParameter("name");
         String pass = request.getParameter("password");
-        
-        check.getData(name, pass);
-        
+
+        QueryChecker check;
+        try {
+            check = new QueryChecker();
+            try {
+                check.getData(name, pass);
+            } catch (SQLException ex) {
+                Logger.getLogger(StudentLoginServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(StudentLoginServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         if ("".equals(name) || "".equals(pass)) {
             pw.println("<h1>Hello User</h1>");
             pw.println("<h1>Dont forget to enter your name!</h1>");
